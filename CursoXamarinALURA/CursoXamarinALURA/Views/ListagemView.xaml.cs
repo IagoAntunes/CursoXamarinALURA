@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace CursoXamarinALURA
+namespace CursoXamarinALURA.Views
 {
     public class Veiculo
     {
@@ -18,10 +18,10 @@ namespace CursoXamarinALURA
         }
     }
 
-    public partial class MainPage : ContentPage
+    public partial class ListagemView : ContentPage
     {
         public List<Veiculo> Veiculos { get; set; }
-        public MainPage()
+        public ListagemView()
         {
             InitializeComponent();
 
@@ -38,7 +38,7 @@ namespace CursoXamarinALURA
         {
             var veiculo = (Veiculo)e.Item;
 
-            DisplayAlert("Test Drive",string.Format("Voce clicou no modelo {0} que custa {1}",veiculo.Nome,veiculo.PrecoFormatado),"OK");
+            Navigation.PushAsync(new DetalheView(veiculo));
         }
     }
 }
