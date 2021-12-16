@@ -12,7 +12,6 @@ namespace CursoXamarinALURA.Views
  
     public partial class ListagemView : ContentPage
     {
-        
         public ListagemView()
         {
             InitializeComponent();
