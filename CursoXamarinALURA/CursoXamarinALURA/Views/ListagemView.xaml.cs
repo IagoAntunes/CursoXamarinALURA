@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CursoXamarinALURA.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,16 +9,7 @@ using Xamarin.Forms;
 
 namespace CursoXamarinALURA.Views
 {
-    public class Veiculo
-    {
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
-        public string PrecoFormatado
-        {
-            get { return string.Format("R${0}",Preco); }
-        }
-    }
-
+ 
     public partial class ListagemView : ContentPage
     {
         public List<Veiculo> Veiculos { get; set; }
@@ -25,12 +17,8 @@ namespace CursoXamarinALURA.Views
         {
             InitializeComponent();
 
-            this.Veiculos = new List<Veiculo>
-            {
-                new Veiculo{Nome = "Azera v6",Preco = 60000},
-                new Veiculo{Nome = "Fiesta 2.0",Preco = 50000},
-                new Veiculo{Nome = "HB20 S",Preco = 40000},
-            };
+            this.Veiculos = new ListagemVeiculos().Veiculos;
+
             this.BindingContext = this;
         }
 
