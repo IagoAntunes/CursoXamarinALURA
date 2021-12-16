@@ -16,6 +16,31 @@ namespace CursoXamarinALURA.Views
         private const int AR_CONDICIONADO = 1000;
         private const int MP3_PLAYER = 500;
 
+        public string ValorTotal
+        {
+            get
+            {
+                return string.Format("Valor Total: {0}", Veiculo.Preco +
+                    (TemFreioABS ? FREIO_ABS : 0));
+            }
+        }
+
+        bool temFreioAbs;
+        public bool TemFreioABS
+        {
+            get
+            {
+                return temFreioAbs;
+            }
+            set
+            {
+                temFreioAbs = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ValorTotal));
+            }
+        }
+        
+
         public string TextoFreioABS
         {
             get
