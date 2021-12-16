@@ -5,15 +5,30 @@
              Title="{Binding Veiculo.Nome}">
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="25">
             <Label Text="Esta é a pagina de detalhe"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"/>
 
+
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="Acessórios">
+                        <SwitchCell Text="{Binding TextoFreioABS}" On="True"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoArCondicionado}" On="True"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoMP3Player}" On="True"></SwitchCell>
+                        <TextCell Text="Total: R$ 50000"></TextCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            
             <Button x:Name="buttonProximo" Text="Proximo"
                     Clicked="buttonProximo_Clicked"
                     VerticalOptions="End">
             </Button>
+            
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
