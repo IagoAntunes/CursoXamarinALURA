@@ -38,5 +38,16 @@ namespace CursoXamarinALURA.Views
             this.Veiculo = veiculo;
             this.BindingContext = this;
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Agendamento",
+                string.Format(@"Nome: {0}
+                Telefone: {1}
+                Email: {2} 
+                Data Agendamento: {3}
+                Hora Agendamento: {4}"
+                ,Nome,Phone,Email,dataAgendamento.ToString("dd/MM/yyyy"),HoraAgendamento),"Ok");
+        }
     }
 }
