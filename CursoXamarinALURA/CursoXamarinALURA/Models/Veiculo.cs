@@ -16,5 +16,21 @@ namespace CursoXamarinALURA.Models
         {
             get { return string.Format("R${0}", Preco); }
         }
+
+        public bool TemFreioABS { get; set; }
+        public bool TemArCondicionado { get; set; }
+        public bool TemMP3Player { get; set; }
+
+        public string PrecoTotalFormatado
+        {
+            get
+            {
+                return string.Format("Valor Total: {0}", Preco +
+                (TemFreioABS ? Veiculo.FREIO_ABS : 0) +
+                (TemArCondicionado ? Veiculo.AR_CONDICIONADO : 0) +
+                (TemMP3Player ? Veiculo.MP3_PLAYER : 0));
+            }
+        }
+
     }
 }

@@ -17,51 +17,44 @@ namespace CursoXamarinALURA.Views
         {
             get
             {
-                return string.Format("Valor Total: {0}", Veiculo.Preco +
-                    (TemFreioABS ? Veiculo.FREIO_ABS : 0)+
-                    (TemArCondicionado? Veiculo.AR_CONDICIONADO :0)+
-                    (TemMP3Player? Veiculo.MP3_PLAYER :0));
+                return Veiculo.PrecoTotalFormatado;
             }
         }
-
-        bool temFreioAbs;
         public bool TemFreioABS
         {
             get
             {
-                return temFreioAbs;
+                return Veiculo.TemFreioABS;
             }
             set
             {
-                temFreioAbs = value;
+                Veiculo.TemFreioABS = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
         }
-        bool temArCondicionado;
         public bool TemArCondicionado
         {
             get
             {
-                return temArCondicionado;
+                return Veiculo.TemArCondicionado;
             }
             set
             {
-                temArCondicionado = value;
+                Veiculo.TemArCondicionado = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
         }        
-        bool temMP3Player;
         public bool TemMP3Player
         {
             get
             {
-                return temMP3Player;
+                return Veiculo.TemMP3Player;
             }
             set
             {
-                temMP3Player = value;
+                Veiculo.TemMP3Player = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
