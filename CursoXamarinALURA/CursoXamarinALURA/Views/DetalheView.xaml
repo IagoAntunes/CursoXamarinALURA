@@ -15,8 +15,8 @@
                 <TableRoot>
                     <TableSection Title="Acessórios">
                         <SwitchCell Text="{Binding TextoFreioABS}" On="{Binding TemFreioABS,Mode=TwoWay}" ></SwitchCell>
-                        <SwitchCell Text="{Binding TextoArCondicionado,Mode=TwoWay}"></SwitchCell>
-                        <SwitchCell Text="{Binding TextoMP3Player,Mode=TwoWay}"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoArCondicionado,Mode=TwoWay}" On="{Binding TemArCondicionado,Mode=TwoWay}"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoMP3Player,Mode=TwoWay}" On="{Binding TemMP3Player,Mode=TwoWay}"></SwitchCell>
                         <TextCell Text="{Binding ValorTotal,Mode=TwoWay}"></TextCell>
                     </TableSection>
                 </TableRoot>
@@ -24,7 +24,8 @@
             
             <Button x:Name="buttonProximo" Text="Proximo"
                     Clicked="buttonProximo_Clicked"
-                    VerticalOptions="End">
+                    VerticalOptions="End"
+                    CornerRadius="30">
             </Button>
             
             
