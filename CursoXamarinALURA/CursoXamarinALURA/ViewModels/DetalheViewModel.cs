@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using CursoXamarinALURA.Models;
+using Xamarin.Forms;
+
 namespace CursoXamarinALURA.ViewModels
 {
     public class DetalheViewModel : INotifyPropertyChanged
@@ -11,6 +14,10 @@ namespace CursoXamarinALURA.ViewModels
         public DetalheViewModel(Veiculo veiculo)
         {
             this.Veiculo = veiculo;
+            ProximoCommand = new Command(() =>
+            {
+                MessagingCenter.Send(veiculo,"Proximo");
+            });
 
         }
         public string ValorTotal
@@ -90,5 +97,6 @@ namespace CursoXamarinALURA.ViewModels
         {
             PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(name));
         }
+        public ICommand ProximoCommand { get; set; }
     }
 }
