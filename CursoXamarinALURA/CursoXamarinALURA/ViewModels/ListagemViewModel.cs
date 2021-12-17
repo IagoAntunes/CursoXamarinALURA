@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace CursoXamarinALURA.ViewModels
 {
@@ -19,15 +20,14 @@ namespace CursoXamarinALURA.ViewModels
             set
             {
                 veiculoSelecionado = value;
-                
+                if(value != null)
+                    MessagingCenter.Send(veiculoSelecionado, "VeiculoSelecionado"); 
             }
         }
         public ListagemViewModel()
         {
             this.Veiculos = new ListagemVeiculos().Veiculos;
         }
-
-
 
     }
 }

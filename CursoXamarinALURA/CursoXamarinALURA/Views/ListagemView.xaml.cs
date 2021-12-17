@@ -15,12 +15,26 @@ namespace CursoXamarinALURA.Views
         public ListagemView()
         {
             InitializeComponent();
-        }
-        private void listViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var veiculo = (Veiculo)e.Item;
 
-            Navigation.PushAsync(new DetalheView(veiculo));
         }
+   
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Veiculo>(this,"Veiculo Selecionado", (msg) => 
+            {
+                Navigation.PushAsync(new DetalheView(msg));
+
+
+            });
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Veiculo>(this, "Veiculo Selecionado");
+        }
+
+
     }
 }
