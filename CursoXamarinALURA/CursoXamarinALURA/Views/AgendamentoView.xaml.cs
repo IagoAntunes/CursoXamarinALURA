@@ -49,28 +49,24 @@ namespace CursoXamarinALURA.Views
 
                 if (resultado)
                 {
-
-                    DisplayAlert("Agendamento",
-                    string.Format(@"
-                    Veiculo: {0}
-                    Nome: {1}
-                    Telefone: {2}
-                    Email: {3} 
-                    Data Agendamento: {4}
-                    Hora Agendamento: {5}",
-                    ViewModel.Agendamento.Veiculo.Nome,
-                    ViewModel.Agendamento.Nome,
-                    ViewModel.Agendamento.Phone,
-                    ViewModel.Agendamento.Email,
-                    ViewModel.Agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
-                    ViewModel.Agendamento.HoraAgendamento), "Ok");
+                    this.ViewModel.SalvarAgendamento();
                 }
+            });
+            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento","Agendamento Salvo com sucesso!","ok");
+            });
+            MessagingCenter.Subscribe<ArgumentException>(this, "FalhaAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Falha ao agendar o test drive! Verifique os dados e tente novamente","ok");
             });
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");  
+            MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "SucessoAgendamento");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FalhaAgendamento");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CursoXamarinALURA.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,6 +10,8 @@ namespace CursoXamarinALURA.ViewModels
 {
     public class AgendamentoViewModel
     {
+        const string URL_POST_AGENDAMENTO = "https://aluracar.herokuapp.com/salvaragendamento";
+
         public AgendamentoViewModel(Veiculo veiculo)
         {
             this.Agendamento = new Agendamento();
@@ -39,7 +42,21 @@ namespace CursoXamarinALURA.ViewModels
 
         public ICommand AgendarCommand { get; set; }
 
+        public async void SalvarAgendamento()
+        {
+            HttpClient cliente = new HttpClient();
+            var conteudo = new StringContent("",Encoding.UTF8,"application/json");
+            var resposta = await cliente.PostAsync(URL_POST_AGENDAMENTO, conteudo);
 
+            if (resposta.IsSuccessStatusCode)
+            {
+                MessagingCenter.Send<Agendamento>(this.Agendamento, "SucessoAgendamento");
+            }
+            else
+            {
+                MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaAgendamento");
+            }
+        }
 
     }
 }
