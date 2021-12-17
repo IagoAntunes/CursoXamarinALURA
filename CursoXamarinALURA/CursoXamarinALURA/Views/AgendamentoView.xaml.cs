@@ -39,5 +39,31 @@ namespace CursoXamarinALURA.Views
                 ViewModel.Agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
                 ViewModel.Agendamento.HoraAgendamento), "Ok");
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento",
+                string.Format(@"
+                Veiculo: {0}
+                Nome: {1}
+                Telefone: {2}
+                Email: {3} 
+                Data Agendamento: {4}
+                Hora Agendamento: {5}",
+                ViewModel.Agendamento.Veiculo.Nome,
+                ViewModel.Agendamento.Nome,
+                ViewModel.Agendamento.Phone,
+                ViewModel.Agendamento.Email,
+                ViewModel.Agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
+                ViewModel.Agendamento.HoraAgendamento), "Ok");
+            });
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");  
+        }
     }
 }

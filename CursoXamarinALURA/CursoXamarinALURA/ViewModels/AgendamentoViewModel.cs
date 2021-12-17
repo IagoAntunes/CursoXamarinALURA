@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace CursoXamarinALURA.ViewModels
 {
@@ -11,6 +13,10 @@ namespace CursoXamarinALURA.ViewModels
         {
             this.Agendamento = new Agendamento();
             this.Agendamento.Veiculo = veiculo;
+            AgendarCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Agendamento>(this.Agendamento,"Agendamento");
+            });
         }
         public Agendamento Agendamento { get; set; }
         public Veiculo Veiculo { get { return Agendamento.Veiculo; } set { Agendamento.Veiculo = value; } }
@@ -30,6 +36,10 @@ namespace CursoXamarinALURA.ViewModels
             }
         }
         public TimeSpan HoraAgendamento { get { return Agendamento.HoraAgendamento; } set { Agendamento.HoraAgendamento = value; } }
+
+        public ICommand AgendarCommand { get; set; }
+
+
 
     }
 }
