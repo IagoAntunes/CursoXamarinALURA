@@ -11,6 +11,7 @@ namespace CursoXamarinALURA.ViewModels
         public DetalheViewModel(Veiculo veiculo)
         {
             this.Veiculo = veiculo;
+
         }
         public string ValorTotal
         {
