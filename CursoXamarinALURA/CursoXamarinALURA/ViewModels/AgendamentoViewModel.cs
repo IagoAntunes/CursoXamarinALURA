@@ -1,4 +1,5 @@
 ﻿using CursoXamarinALURA.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace CursoXamarinALURA.ViewModels
 {
-    public class AgendamentoViewModel
+    public class AgendamentoViewModel : BaseViewModel
     {
         const string URL_POST_AGENDAMENTO = "https://aluracar.herokuapp.com/salvaragendamento";
 
@@ -19,14 +20,38 @@ namespace CursoXamarinALURA.ViewModels
             AgendarCommand = new Command(() =>
             {
                 MessagingCenter.Send<Agendamento>(this.Agendamento,"Agendamento");
+            }, () =>
+            {
+                return !string.IsNullOrEmpty(this.Nome) &&
+               !string.IsNullOrEmpty(this.Phone) &&
+               !string.IsNullOrEmpty(this.Email);
             });
         }
         public Agendamento Agendamento { get; set; }
         public Veiculo Veiculo { get { return Agendamento.Veiculo; } set { Agendamento.Veiculo = value; } }
 
-        public string Nome { get { return Agendamento.Nome; } set { Agendamento.Nome = value; } }
-        public string Phone { get { return Agendamento.Phone; } set { Agendamento.Phone = value; } }
-        public string Email { get { return Agendamento.Email; } set { Agendamento.Email = value; } }
+        public string Nome { get { return Agendamento.Nome; } 
+            set 
+            { 
+                Agendamento.Nome = value;
+                OnPropertyChanged();
+                ((Command)AgendarCommand).ChangeCanExecute();
+            } 
+        }
+        public string Phone { get { return Agendamento.Phone; } 
+            set {
+                Agendamento.Phone = value;
+                OnPropertyChanged();
+                ((Command)AgendarCommand).ChangeCanExecute();
+            } 
+        }
+        public string Email { get { return Agendamento.Email; } 
+            set {
+                Agendamento.Email = value;
+                OnPropertyChanged();
+                ((Command)AgendarCommand).ChangeCanExecute();
+            } 
+        }
         public DateTime DataAgendamento
         {
             get
@@ -45,7 +70,22 @@ namespace CursoXamarinALURA.ViewModels
         public async void SalvarAgendamento()
         {
             HttpClient cliente = new HttpClient();
-            var conteudo = new StringContent("",Encoding.UTF8,"application/json");
+            var dataHoraAgendamento = new DateTime(
+                DataAgendamento.Year,DataAgendamento.Month,DataAgendamento.Day,
+                HoraAgendamento.Hours,HoraAgendamento.Minutes,HoraAgendamento.Seconds
+                );
+            var json = JsonConvert.SerializeObject(new
+            {
+                nome = Nome,
+                fone = Phone,
+                email = Email,
+                carro = Veiculo.Nome,
+                preco = Veiculo.Preco,
+                dataAgendamento = dataHoraAgendamento
+            });
+
+
+            var conteudo = new StringContent(json,Encoding.UTF8,"application/json");
             var resposta = await cliente.PostAsync(URL_POST_AGENDAMENTO, conteudo);
 
             if (resposta.IsSuccessStatusCode)
