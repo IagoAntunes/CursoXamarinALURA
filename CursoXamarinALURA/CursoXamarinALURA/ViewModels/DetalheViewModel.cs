@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace CursoXamarinALURA.ViewModels
 {
-    public class DetalheViewModel : INotifyPropertyChanged
+    public class DetalheViewModel : BaseViewModel
     {
         public DetalheViewModel(Veiculo veiculo)
         {
@@ -92,11 +92,6 @@ namespace CursoXamarinALURA.ViewModels
 
         public Veiculo Veiculo { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string name = "")
-        {
-            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(name));
-        }
         public ICommand ProximoCommand { get; set; }
     }
 }
