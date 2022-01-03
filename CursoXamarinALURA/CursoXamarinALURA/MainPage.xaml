@@ -4,7 +4,8 @@
              x:Class="CursoXamarinALURA.MainPage">
 
 
-    <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}">
+    <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25"
+              ItemTapped="listViewVeiculos_ItemTapped">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -12,7 +13,7 @@
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Nome}" FontSize="20" VerticalTextAlignment="Center"/>
                             <Label Text=" - " VerticalTextAlignment="Center"/>
-                            <Label Text="{Binding Preco}" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding PrecoFormatado}" FontAttributes="Bold" VerticalTextAlignment="Center"/>
                         </StackLayout>
                     </ViewCell.View>
                 </ViewCell>

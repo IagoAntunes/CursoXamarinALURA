@@ -13,6 +13,10 @@ namespace CursoXamarinALURA
     {
         public string Nome { get; set; }
         public decimal Preco { get; set; }
+        public string PrecoFormatado
+        {
+            get { return string.Format("R$ {0}", Preco); }
+        }
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -29,10 +33,14 @@ namespace CursoXamarinALURA
                 new Veiculo{Nome = "Fiesta 2.0",Preco = 50000},
                 new Veiculo{Nome = "HB20 S",Preco = 40000}
             };
-
             this.BindingContext = this;
+        }
 
-
+        private void listViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var veiculo = (Veiculo)e.Item;
+            DisplayAlert("Veiculos",string.Format("Voce tocou no modelo {0} que custa {1} ",
+                veiculo.Nome,veiculo.PrecoFormatado),"Ok");
         }
     }
 }
