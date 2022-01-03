@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CursoXamarinALURA.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace CursoXamarinALURA
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new ListagemView());
         }
 
         protected override void OnStart()

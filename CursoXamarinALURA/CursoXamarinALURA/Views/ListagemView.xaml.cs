@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CursoXamarinALURA
+namespace CursoXamarinALURA.Views
 {
     public class Veiculo
     {
@@ -20,10 +20,10 @@ namespace CursoXamarinALURA
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class ListagemView : ContentPage
     {
         public List<Veiculo> Veiculos { get; set; }
-        public MainPage()
+        public ListagemView()
         {
             InitializeComponent();
 
@@ -39,8 +39,8 @@ namespace CursoXamarinALURA
         private void listViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var veiculo = (Veiculo)e.Item;
-            DisplayAlert("Veiculos",string.Format("Voce tocou no modelo {0} que custa {1} ",
-                veiculo.Nome,veiculo.PrecoFormatado),"Ok");
+
+            Navigation.PushAsync(new DetalheView(veiculo));
         }
     }
 }
