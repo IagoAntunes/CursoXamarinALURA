@@ -38,6 +38,30 @@ namespace CursoXamarinALURA.Views
                 return string.Format("MP3 Plater - R$ {0}",MP3_PLAYER);
             }
         }
+        private bool temFreioABS;
+        public bool TemFreioABS
+        {
+            get
+            {
+                return temFreioABS;
+            }
+            set
+            {
+                temFreioABS = value;
+                
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ValorTotal));
+
+            }
+        }
+
+        public string ValorTotal { 
+            get
+            {
+                return string.Format("Valor Total: R$ {0}", Veiculo.Preco +
+                    (temFreioABS ? FREIO_ABS : 0));
+            }
+        }
 
         public DetalheView(Veiculo veiculo)
         {

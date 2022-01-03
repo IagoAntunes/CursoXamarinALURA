@@ -8,10 +8,10 @@
         <TableView Intent="Settings">
             <TableRoot>
                 <TableSection Title="Acessórios">
-                    <SwitchCell Text="{Binding TextoFreioABS}" On="True"/>
-                    <SwitchCell Text="{Binding TextoArCondicionado}"/>
-                    <SwitchCell Text="{Binding TextoMP3Player}"/>
-                    <TextCell Text="Total: R$ 50000"/>
+                    <SwitchCell Text="{Binding TextoFreioABS}" On="{Binding TemFreioABS,Mode=TwoWay}"/>
+                    <SwitchCell Text="{Binding TextoArCondicionado,Mode=TwoWay}"/>
+                    <SwitchCell Text="{Binding TextoMP3Player,Mode=TwoWay}"/>
+                    <TextCell Text="{Binding ValorTotal,Mode=TwoWay}"/>
                 </TableSection>
             </TableRoot>
         </TableView>   
