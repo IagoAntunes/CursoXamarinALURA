@@ -15,6 +15,16 @@ namespace CursoXamarinALURA
         public MainPage()
         {
             InitializeComponent();
+
+            listViewVeiculos.ItemsSource = new string[]
+            {
+                "Azira V6",
+                "Fiesta 2.0",
+                "HB20 S"
+            };
+
+
+
         }
     }
 }
