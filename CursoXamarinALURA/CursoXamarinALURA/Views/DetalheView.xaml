@@ -4,10 +4,17 @@
              x:Class="CursoXamarinALURA.Views.DetalheView"
              Title="{Binding Veiculo.Nome}">
 
-    <StackLayout>
-        <Label Text="Esta é a pagina de detalhe" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-
-            <Button x:Name="buttonProximo" Text="Proximo" Clicked="buttonProximo_Clicked"
+    <StackLayout Padding="25">
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Acessórios">
+                    <SwitchCell Text="Freio ABS - R$ 800" On="True"/>
+                    
+                </TableSection>
+            </TableRoot>
+        </TableView>   
+        
+        <Button x:Name="buttonProximo" Text="Proximo" Clicked="buttonProximo_Clicked"
                 VerticalOptions="End"/>
     </StackLayout>
 
