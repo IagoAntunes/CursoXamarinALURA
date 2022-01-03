@@ -4,8 +4,16 @@
              x:Class="CursoXamarinALURA.MainPage">
 
 
-    <ListView x:Name="listViewVeiculos">
-        
+    <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <Label Text="{Binding Nome}"/>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
 
     

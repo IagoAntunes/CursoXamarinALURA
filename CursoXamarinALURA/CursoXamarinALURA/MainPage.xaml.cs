@@ -9,20 +9,28 @@ using Xamarin.Forms.Xaml;
 
 namespace CursoXamarinALURA
 {
+    public class Veiculo
+    {
+        public string Nome { get; set; }
+        public decimal Preco { get; set; }
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
+        public List<Veiculo> Veiculos { get; set; }
         public MainPage()
         {
             InitializeComponent();
 
-            listViewVeiculos.ItemsSource = new string[]
+            this.Veiculos = new List<Veiculo>()
             {
-                "Azira V6",
-                "Fiesta 2.0",
-                "HB20 S"
+                new Veiculo{Nome = "Azera V6",Preco = 60000},
+                new Veiculo{Nome = "Fiesta 2.0",Preco = 50000},
+                new Veiculo{Nome = "HB20 S",Preco = 40000}
             };
 
+            this.BindingContext = this;
 
 
         }
